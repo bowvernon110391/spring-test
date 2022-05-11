@@ -46,4 +46,8 @@ public class UserService {
         log.info("Deleting user: {}", user);
         userRepository.delete(user);
     }
+
+    public long count() {
+        return userRepository.count();
+    }
 }
