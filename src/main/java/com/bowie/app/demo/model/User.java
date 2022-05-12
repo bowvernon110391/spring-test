@@ -57,4 +57,8 @@ public class User {
     public static Specification<User> from(Date date) {
         return (user, cq, cb) -> cb.greaterThanOrEqualTo(cb.function("DATE", Date.class, user.get("createdAt")), date);
     }
+
+    public static Specification<User> to(Date date) {
+        return (user, cq, cb) -> cb.lessThanOrEqualTo(cb.function("DATE", Date.class, user.get("createdAt")), date);
+    }
 }

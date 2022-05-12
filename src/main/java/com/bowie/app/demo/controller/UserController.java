@@ -1,6 +1,7 @@
 package com.bowie.app.demo.controller;
 
 import com.bowie.app.demo.model.User;
+import com.bowie.app.demo.model.specification.CommonTrait;
 import com.bowie.app.demo.repo.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,13 @@ public class UserController {
         }
 
         if (startDate != null) {
-            spec = spec.and(User.from(startDate));
+//            spec = spec.and(User.from(startDate));
+            spec = spec.and(CommonTrait.createdFrom(startDate));
+        }
+
+        if (endDate != null) {
+//            spec = spec.and(User.to(endDate));
+            spec = spec.and(CommonTrait.createdTo(endDate));
         }
 
         return userRepository.findAll(spec, pageable);
